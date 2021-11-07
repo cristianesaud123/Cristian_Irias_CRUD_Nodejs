@@ -1,0 +1,53 @@
+<% include partials/_headermun %>
+<a style="margin-top: 4px; margin-left: 15px;background-color: blue;"  href="/" class="btn btn-primary">Ir a Clientes</a>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Municipio</td>
+            <td>Departamento</td>
+            <td>Acciones</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= data[i].municipio %></td>
+                <td><%= data[i].departamento %></td>
+                <td>
+                  <a href="/municipios/updatem/<%= data[i].id %>" class="btn btn-info">Editar</a>
+                  <a style="margin-top: 2px;" href="/municipios/deletem/<%= data[i].id %>" class="btn btn-danger">Eliminar</a>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <div class="card-body">
+
+        <form action="/municipios/addm" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Nombre" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <input type="text" name="departamento" placeholder="Departamento" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Guardar Municipio
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/_footermun %>
